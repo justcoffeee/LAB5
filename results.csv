@@ -1,0 +1,20 @@
+experiment,split,params,train_time_s,accuracy,precision,recall,f1,note
+baseline_tfidf-uni_LR,test25k,10000 feats,2.2,0.8828,0.8805,0.8858,0.8832,TF-IDF uni max10k + LR
+rnn_emb100-h128_ml200_e5,test25k,1029569,5.7,0.5244,0.5267,0.4818,0.5032,train loss stuck ~0.68 vanishing demo
+lstm_emb100-h128_ml200_e5,test25k,1117889,7.9,0.7933,0.7708,0.8349,0.8016,gates help
+gru_emb100-h128_ml200_e5,test25k,1088449,6.3,0.8328,0.8241,0.8462,0.8350,best recurrent
+gru_ml50_e5,test25k,1088449,5.0,0.7467,0.7778,0.6908,0.7317,retained tokens 21.1%
+gru_ml100_e5,test25k,1088449,5.2,0.8041,0.8106,0.7937,0.8021,retained tokens 40.7%
+lstm_ml50_e5,test25k,1117889,5.2,0.7446,0.7415,0.7508,0.7461,short context
+gru_ml200_e10,test25k,1088449,12.5,0.8344,0.8580,0.8016,0.8288,val loss rises after ep6 overfit
+lstm_ml200_e10,test25k,1117889,16.0,0.8148,0.7809,0.8750,0.8253,best val at ep9
+probe_neg-filler_END-pos,GRU200e5,0,0.0,0.0000,0.0000,0.0000,0.0916,P(pos) below threshold filler dominates
+probe_neg-filler_END-neg,GRU200e5,0,0.0,0.0000,0.0000,0.0000,0.0115,P(pos) correct side
+probe_neg-filler_BEGIN-pos,GRU200e5,0,0.0,0.0000,0.0000,0.0000,0.2238,P(pos) highest among pos
+probe_neutral_END-pos_vs_neg,GRU200e5,0,0.0,0.0000,0.0000,0.0000,0.9561_vs_0.5371,margin 0.42 distinguished
+probe_neutral_MID-pos_vs_neg,GRU200e5,0,0.0,0.0000,0.0000,0.0000,0.9607_vs_0.8594,margin 0.10 hardest
+probe_neutral_BEGIN-pos_vs_neg,GRU200e5,0,0.0,0.0000,0.0000,0.0000,0.9682_vs_0.1522,margin 0.82 easiest
+app_short,GRU200e5_vs_BL,0,0.0,0.0000,0.0000,0.0000,0.9627_vs_0.8950,both correct
+app_long,GRU200e5_vs_BL,0,0.0,0.0000,0.0000,0.0000,0.7528_vs_0.6179,both correct GRU more confident
+app_negation,GRU200e5_vs_BL,0,0.0,0.0000,0.0000,0.0000,0.1040_vs_0.3433,both correct GRU handles not-good
+app_contrast,GRU200e5_vs_BL,0,0.0,0.0000,0.0000,0.0000,0.2887_vs_0.3287,BOTH WRONG terrible dominates
